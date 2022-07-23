@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Install Mini SSG</title>
+	<meta name="description" content="Install Mini SSG, small Static Site Generator - SSG for your HTML files">
+	<meta property="og:title" content="Install Mini SSG">
+	<meta property="og:description" content="Install Mini SSG, small Static Site Generator - SSG for your HTML files">
+	<meta property="og:image" content="https://i.ibb.co/rbTBp5W/Screen-Shot-2021-07-08-at-10-27-49-AM.png">
+	
+	<meta name="twitter:title" content="Install Mini SSG">
+	<meta name="twitter:description" content="Install Mini SSG, small Static Site Generator - SSG for your HTML files">
+	<meta name="twitter:image" content="https://i.ibb.co/rbTBp5W/Screen-Shot-2021-07-08-at-10-27-49-AM.png">
+	<meta name="twitter:card" content="summary">
+
+	<link rel="stylesheet" href="css/css-main.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+	<header class="text-center">
+	<p><span style="font-size: 0.3rem;">&#9899;&#65039;</span>&nbsp;Mini SSG</p>
+	<nav>
+		<a href="minissg.vercel.html">Story</a> |
+		<a href="tour.html">Tour</a> |
+		<a href="install.html">Install</a> |
+		<a href="https://www.youtube.com/playlist?list=PLFwNw2pz2pAeRz06iYqMEraN5eXwDwAiI" target="_blank">Video</a> |
+		<a href="log.html">Log</a> |
+		<a href="https://ko-fi.com/hilmanski" target="_blank">Donate</a>
+	</nav>
+</header>
+
+	
+
+<main>
+	<div class="hero text-center">
+		<h1>Get started with Mini SSG</h1>
+		<h2>Mini SSG built with NodeJS, so Node/NPM is needed</h2>
+		<br>
+	</div>
+
+	<div class="v-group">
+
+		<div>
+			<p class="m"> 1. Install mini-SSG with npm</p>
+			<p>If you're new to Node/NPM, <a href="https://nodejs.org/en/" target="_blank">install it</a>  first</p>
+			<pre class="br-20"><code class="language-bash">
+npm init -y 				
+npm install mini-ssg
+			</code></pre>
+		</div>
+
+		<div>
+			<p class="m">2. Add this script to your package.json</p>
+			<pre class="br-20"><code class="language-bash">
+  "scripts": {
+    "start": "minissg",
+    "dev": "minissg --watch",
+  },
+			</code></pre>
+		</div>
+
+		<div>
+		<p>Key Concept: </p>
+		<div class="alert-warning">
+			<li> All HTML files you want to render must be in '/dev/pages/'</li>
+			<li>Other static files that don't change (ex: css, js, sitemap.xml, etc..) lives in /dev/static/</li>
+		</div>
+		</div>
+		
+		<div>
+			<p class="m"> 3. Next is up to you </p>
+			<p>Depend on what you need <a href="tour.html" target="_blank">(check tour)</a> for all syntax. Let's say we want to make a page with same header and footer</p>
+
+			<br>
+			<p>3a. Create <code>dev/pages/index.html</code>, with this value</p>
+			<pre class="br-20"><code class="language-html">
+@import(header)		
+&lt;p&gt;Your awesome content&lt;/p&gt;
+@import(footer)
+			</code></pre>
+			<p>*<code>@import(NAME)</code> //could be anything match your .html files</p>
+
+			<br>
+			<p>3b. Now create header.html and footer.html inside dev/_imports folder, with any content you want</p>
+			<pre class="br-20"><code class="language-html">
+&lt;!-- Ex: in dev/_imports/header.html --&gt;
+&lt;h1&gt;Your Brand&lt;/h1&gt;				
+&lt;p&gt;This is header&lt;/p&gt;
+
+&lt;!-- Ex: in dev/_imports/footer.html --&gt;			
+&lt;p&gt;This is footer&lt;/p&gt;
+			</code></pre>
+
+			<br>
+			<p>3c. Run this command (your choice) </p>
+<pre class="br-20"><code class="language-bash">
+npm run start		
+//or
+npm run dev
+</code></pre>
+			<p>*<code>npm run dev</code> will run a live server at http://127.0.0.1:8080
+			and watch any file changes</p>
+			<p>*<code>npm run start</code> will just render your page</p>
+			<p>caveat: it delete all public folder and start from scratch, so remember to delete your trash bin later</p>
+		</div>
+
+			<p>3d. Your site is ready on /public folder. <br>
+			Whenever your deploy it, tell your provider to serve your site from '/public'</p>
+			
+			<br>
+			<p>4. Continue creating other files, <br>depend on what you need <a href="tour.html" target="_blank">(check tour)</a> for all syntax. </p>
+		
+		<br>
+		<div>
+			<p>Want to see a complete example? check this  <a href="https://github.com/hilmanski/mini-SSG-website" target="_blank">website repo</a></p>
+		</div>
+
+
+		<br>
+		<div>
+			//Folder structure example
+			<pre class="br-20"><code class="language-bash">
+/YourProject
+	/dev
+		/_layouts
+			/base.html
+		/_components
+			/alert.html
+		/_imports
+			header.html
+			footer.html
+		/pages
+			/index.html
+			/about.html
+		/static
+			/assets/css/main.css
+					/js/main.js
+			otherstatic.xml
+
+	/public (Your ready to deploy folder. Auto generated for you)
+			</code></pre>
+		</div>
+
+	</div>
+</main>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="js/components-prism-core.min.js"></script>
+<script src="js/autoloader-prism-autoloader.min.js"></script>
+
+
+
+	<br>
+<footer>
+	<p>Built with &#10084;&#65039; by <a href="https://twitter.com/hilmanski" target="_blank">@hilmanski</a> | Any issue, request or Idea? <a href="https://github.com/hilmanski/mini-SSG/" target="_blank"> repo here </a></p>
+</footer>
+</body>
+</html>
